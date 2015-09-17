@@ -1,12 +1,16 @@
-class TriggerNode
+{Transform} = require 'stream'
+
+class TriggerNode extends Transform
   constructor: (@config, @data) ->
-  onMessage:(message, callback=->)=>
-    sendMsg =
-      message: message
+    super objectMode: true
 
-    if @config.payloadType == 'date'
-      sendMsg.message = Date.now()
+  _transform: (envelope, encoding, next) =>
+    {message,config} = envelope
 
-    callback null, sendMsg
+    message = Date.now() if config?.payloadType == 'date'
+    
+    @push message
+    @push null
+    next()
 
 module.exports = TriggerNode

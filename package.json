@@ -1,6 +1,6 @@
 {
   "name": "nanocyte-node-trigger",
-  "version": "1.0.4",
+  "version": "2.0.0",
   "description": "Trigger node for Nanocyte",
   "main": "index.js",
   "scripts": {
