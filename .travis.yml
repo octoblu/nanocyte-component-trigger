@@ -1,12 +1,18 @@
 language: node_js
 node_js:
 - '0.11'
+addons:
+  code_climate:
+    repo_token: <REPO TOKEN GOES HERE>
+before_script:
+- npm install -g codeclimate-test-reporter
+after_script:
+- codeclimate-test-reporter < coverage/lcov.info
 deploy:
   provider: npm
   email: serveradmin@octoblu.com
   api_key:
-    secure: u4vKjuBYtS9R1wfgo9VMI1NXEV8SqbHwd9eTEOkYTQcJ4Qt3JJnIb9tmsr+I5lMVJNuC7tM022Y91s0fm2fz/mTFCt+XuceHaNgrivJuvFJw14XEzMxOJQcKrntlxAG6iKmK2bn8SKNP7h3SoHg2dKWk7uA21R9QvCtmsc3i72ZXevbIQhMpbvD0OUJjWfS4jHuRV1sVJdNVg1GPiFallQRjHLHI0hi1TYTsjUyNJNBSdGzsYGzlh/ALPV0XUrUT/GfY8hLNu7ZI+JgE68tS01qhZkgofmjpBNyh92bjuFu0AUDB2SrpGEGfGJie/RFdZqDUfzkf3mWIGt06uRC2LKbVvCsYdHIizcDHIfgX8GbW0Ie7dKLmfcEFTj1TXtPYo5Kpkqi+2isBlBw7lnecp0Z4V5fvzTaa4xEGgim3UYibh4zJnOVYg38Zvrd+YaPDzOKx20b4qBjSSt2+U6MwOCG7smHaht1oMJnd0jvWby6cd8dM58EWlBSNVyh7j6N5A2DfFg24oUHxuktSYmQ4uvZXZ9QSe1G8q3HJL06jXg0gSk6vGKbfYAq94D1jk95D1ROEVQan0oOZjL9eOeppI/6E3hnriUMgItelQqofW1ZHBytI+aZRbC3xys96zN2g4niXfyal8XyrjNyGjQjNEv3B/EnDZsp3fDNAh4h0GAs=
+    secure: G6Whdw2nhRYtVHUaGP1TouJhH2q+/K9/IKx0VCB3JCWimYShHIBlWpeFhgzJqujblCBgCq05NAhSIg6FH31ikKFKQB1pXuYbpzMAFbPeeQA+WXbsuoM9oOBpUvVz68OVNNVrJqqm6omYdccN3rogQgNB7MJDNBKPdWR1thqW+ij/E65q5eh8uEAIXay5o9dbKDNQNaj0JzK/g69Jo3P9yc33Vamonl0JwMC6qppNNAVirGgoUMjFO3QL8bnuaGLWs71vgMvmz0n9QlU4EVWmrK9/iTWIL9GkjFXM45KQcR//Gv2TFvsrTpsCoKFMyrT6KtA0BgKuCHx3pGGW97NUcuv5TK+nYY1dZEXWF+1X9NCbVs+jJ+PJRdiiEoMCXJAF9/qf2fedWucIxpseU+FS13hBHGoQ5SZZS53CiAIKwqR8Et8c21cYTba0pRuN4z5e6jW2NLHwvI++wwtdskiaTbilLD5e8LHG081+ZXSwvHmtqWqOojvzmUELXnd7/lPZluH1X76wBKNsjeDtcUyWPCFy7GI/0Q4fHU2jD5/jSmErBe8E3463X9e9Wtyc83ekpP2DE1KtO4roGHL/Z7UBtmCK4UgziFMI5e+Us9D0DOKBDNuj9sSHjh64UlsVN0Nprd/dAhVX0EmvfTwJOvny3SZM2hFwHpfRjGeYPle4fxA=
   on:
     tags: true
     branches: true
-    repo: octoblu/nanocyte-node-trigger
