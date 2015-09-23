@@ -1,6 +1,6 @@
 {Transform} = require 'stream'
 
-class TriggerNode extends Transform
+class Trigger extends Transform
   constructor: (@config, @data) ->
     super objectMode: true
 
@@ -8,9 +8,9 @@ class TriggerNode extends Transform
     {message,config} = envelope
 
     message = Date.now() if config?.payloadType == 'date'
-    
+
     @push message
     @push null
     next()
 
-module.exports = TriggerNode
+module.exports = Trigger

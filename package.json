@@ -1,14 +1,14 @@
 {
-  "name": "nanocyte-node-trigger",
-  "version": "2.0.0",
-  "description": "Trigger node for Nanocyte",
+  "name": "nanocyte-component-trigger",
+  "version": "1.0.0",
+  "description": "Trigger Component for Nanocyte",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sqrtofsaturn/nanocyte-node-trigger.git"
+    "url": "git+https://github.com/sqrtofsaturn/nanocyte-component-trigger.git"
   },
   "keywords": [
     "octoblu",
@@ -19,9 +19,9 @@
   "author": "sqrt@octoblu.com",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/sqrtofsaturn/nanocyte-node-trigger/issues"
+    "url": "https://github.com/sqrtofsaturn/nanocyte-component-trigger/issues"
   },
-  "homepage": "https://github.com/sqrtofsaturn/nanocyte-node-trigger#readme",
+  "homepage": "https://github.com/sqrtofsaturn/nanocyte-component-trigger#readme",
   "devDependencies": {
     "chai": "^3.2.0",
     "coffee-script": "^1.10.0",

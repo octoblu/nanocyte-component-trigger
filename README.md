@@ -1,2 +1,2 @@
-# nanocyte-node-trigger
-The trigger node for nanocyte
+# nanocyte-component-trigger
+The trigger component for nanocyte

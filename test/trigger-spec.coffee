@@ -1,20 +1,20 @@
 {PassThrough} = require 'stream'
-TriggerNode = require '../src/trigger-node'
+Trigger = require '../src/trigger'
 
 describe 'OctoModel', ->
   it 'should exist', ->
-    expect(TriggerNode).to.exist
+    expect(Trigger).to.exist
 
   describe 'when constructed', ->
     beforeEach ->
-      @sut = new TriggerNode
+      @sut = new Trigger
 
     it 'should exist', ->
       expect(@sut).to.exist
 
   describe 'when we pipe the envelopeStream and pipe it to the sut', ->
     beforeEach (done) ->
-      @sut = new TriggerNode
+      @sut = new Trigger
       @envelopeStream = new PassThrough objectMode: true
       @envelopeStream.pipe @sut
       @envelopeStream.write message: {some: 'data'}, done
@@ -30,7 +30,7 @@ describe 'OctoModel', ->
         message:
           some: 'data'
 
-      @sut = new TriggerNode
+      @sut = new Trigger
       @envelopeStream = new PassThrough objectMode: true
       @envelopeStream.pipe @sut
       @envelopeStream.write envelope, done
