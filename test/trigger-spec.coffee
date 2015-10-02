@@ -1,39 +1,38 @@
-{PassThrough} = require 'stream'
+ReturnValue = require 'nanocyte-component-return-value'
 Trigger = require '../src/trigger'
 
-describe 'OctoModel', ->
+describe 'Trigger', ->
+  beforeEach ->
+    @sut = new Trigger
+
   it 'should exist', ->
-    expect(Trigger).to.exist
+    expect(@sut).to.be.an.instanceOf ReturnValue
 
-  describe 'when constructed', ->
-    beforeEach ->
-      @sut = new Trigger
+  describe '->onEnvelope', ->
+    describe 'when it receives an envelope with payloadType date', ->
+      it 'should return the timestamp', ->
+        envelope =
+          config:
+            payloadType: 'timestamp'
+          message:
+            some: 'data'
 
-    it 'should exist', ->
-      expect(@sut).to.exist
+        expect(@sut.onEnvelope envelope).to.deep.equal payload: Date.now()
 
-  describe 'when we pipe the envelopeStream and pipe it to the sut', ->
-    beforeEach (done) ->
-      @sut = new Trigger
-      @envelopeStream = new PassThrough objectMode: true
-      @envelopeStream.pipe @sut
-      @envelopeStream.write message: {some: 'data'}, done
+    describe 'when it receives an envelope with payloadType string', ->
+      it 'should return the timestamp', ->
+        envelope =
+          config:
+            payloadType: 'date'
+            payload: 'cats'
 
-    it 'should have the message waiting in the stream', ->
-      expect(@sut.read()).to.deep.equal some: 'data'
+        expect(@sut.onEnvelope envelope).to.deep.equal payload: 'cats'
 
-  describe 'when we pipe the envelopeStream and the config with payloadType date', ->
-    beforeEach (done) ->
-      envelope =
-        config:
-          payloadType: 'date'
-        message:
-          some: 'data'
-
-      @sut = new Trigger
-      @envelopeStream = new PassThrough objectMode: true
-      @envelopeStream.pipe @sut
-      @envelopeStream.write envelope, done
-
-    it 'should have the message waiting in the stream', ->
-      expect(@sut.read()).to.be.closeTo Date.now(), 100
+    describe 'when it receives an envelope with payloadType string', ->
+      it 'should return the timestamp', ->
+        envelope =
+          config:
+            payloadType: 'blank'
+            payload: 'kittenz'
+            
+        expect(@sut.onEnvelope envelope).to.deep.equal payload: ''
