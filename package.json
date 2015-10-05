@@ -1,6 +1,6 @@
 {
   "name": "nanocyte-component-trigger",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Trigger Component for Nanocyte",
   "main": "index.js",
   "scripts": {

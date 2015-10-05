@@ -17,7 +17,7 @@ describe 'Trigger', ->
           message:
             some: 'data'
 
-        expect(@sut.onEnvelope envelope).to.deep.equal Date.now()
+        expect(@sut.onEnvelope envelope).to.deep.equal payload: Date.now()
 
     describe 'when it receives an envelope with payloadType string', ->
       it 'should return the timestamp', ->
@@ -26,7 +26,7 @@ describe 'Trigger', ->
             payloadType: 'string'
             payload: 'cats'
 
-        expect(@sut.onEnvelope envelope).to.deep.equal 'cats'
+        expect(@sut.onEnvelope envelope).to.deep.equal payload: 'cats'
 
     describe 'when it receives an envelope with payloadType string', ->
       it 'should return the timestamp', ->
@@ -35,4 +35,4 @@ describe 'Trigger', ->
             payloadType: 'none'
             payload: 'kittenz'
 
-        expect(@sut.onEnvelope envelope).to.deep.equal ''
+        expect(@sut.onEnvelope envelope).to.deep.equal payload: ''

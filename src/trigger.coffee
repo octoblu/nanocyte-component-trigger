@@ -5,11 +5,11 @@ class Trigger extends ReturnValue
   onEnvelope: (envelope) =>
     {message,config} = envelope
 
-    return "" if config?.payloadType == 'none'
+    return payload: "" if config?.payloadType == 'none'
 
     message = config.payload
     message = Date.now() if config?.payloadType == 'date'
 
-    message
+    payload: message
 
 module.exports = Trigger
