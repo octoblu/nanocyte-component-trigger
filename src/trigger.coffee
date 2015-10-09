@@ -3,13 +3,11 @@ ReturnValue = require 'nanocyte-component-return-value'
 
 class Trigger extends ReturnValue
   onEnvelope: (envelope) =>
-    {message,config} = envelope
+    {config} = envelope
 
-    return payload: "" if config?.payloadType == 'none'
+    return "" if config?.payloadType == 'none'
+    return Date.now() if config?.payloadType == 'date'
 
-    message = config.payload
-    message = Date.now() if config?.payloadType == 'date'
-
-    payload: message
+    config.payload
 
 module.exports = Trigger
