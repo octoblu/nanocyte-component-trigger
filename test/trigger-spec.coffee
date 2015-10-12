@@ -15,6 +15,7 @@ describe 'Trigger', ->
           config:
             payloadType: 'date'
           message:
+            topic: 'button'
             some: 'data'
 
         expect(@sut.onEnvelope envelope).to.deep.equal Date.now()
@@ -25,6 +26,8 @@ describe 'Trigger', ->
           config:
             payloadType: 'string'
             payload: 'cats'
+          message:
+            topic: 'button'
 
         expect(@sut.onEnvelope envelope).to.deep.equal 'cats'
 
@@ -34,5 +37,20 @@ describe 'Trigger', ->
           config:
             payloadType: 'none'
             payload: 'kittenz'
+          message:
+            topic: 'button'
 
         expect(@sut.onEnvelope envelope).to.deep.equal ''
+
+    describe 'when it receives an envelope with message topic of NOT BUTTON', ->
+      it 'should return the timestamp', ->
+        envelope =
+          config:
+            payloadType: 'date'
+          message:
+            some: 'data'
+            topic: 'not a button'
+            payload:
+              radiation: 'poisoning'
+
+        expect(@sut.onEnvelope envelope).to.deep.equal radiation: 'poisoning'
