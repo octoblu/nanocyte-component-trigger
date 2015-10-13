@@ -53,4 +53,9 @@ describe 'Trigger', ->
             payload:
               radiation: 'poisoning'
 
-        expect(@sut.onEnvelope envelope).to.deep.equal radiation: 'poisoning'
+        expect(@sut.onEnvelope envelope).to.deep.equal {
+          some: 'data'
+          topic: 'not a button'
+          payload:
+            radiation: 'poisoning'
+        }
