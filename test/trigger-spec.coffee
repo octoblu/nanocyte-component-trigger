@@ -10,7 +10,7 @@ describe 'Trigger', ->
 
   describe '->onEnvelope', ->
     describe 'when it receives an envelope with payloadType date', ->
-      it 'should return the timestamp', ->
+      it 'should return the payload containting a timestamp', ->
         envelope =
           config:
             payloadType: 'date'
@@ -18,10 +18,10 @@ describe 'Trigger', ->
             topic: 'button'
             some: 'data'
 
-        expect(@sut.onEnvelope envelope).to.deep.equal Date.now()
+        expect(@sut.onEnvelope envelope).to.deep.equal payload: Date.now()
 
     describe 'when it receives an envelope with payloadType string', ->
-      it 'should return the timestamp', ->
+      it 'should return the payload containing the string', ->
         envelope =
           config:
             payloadType: 'string'
@@ -29,10 +29,10 @@ describe 'Trigger', ->
           message:
             topic: 'button'
 
-        expect(@sut.onEnvelope envelope).to.deep.equal 'cats'
+        expect(@sut.onEnvelope envelope).to.deep.equal payload: 'cats'
 
-    describe 'when it receives an envelope with payloadType string', ->
-      it 'should return the timestamp', ->
+    describe 'when it receives an envelope with payloadType none', ->
+      it 'should return the payload containing an empty string', ->
         envelope =
           config:
             payloadType: 'none'
@@ -40,10 +40,10 @@ describe 'Trigger', ->
           message:
             topic: 'button'
 
-        expect(@sut.onEnvelope envelope).to.deep.equal ''
+        expect(@sut.onEnvelope envelope).to.deep.equal payload: ''
 
     describe 'when it receives an envelope with message topic of NOT BUTTON', ->
-      it 'should return the timestamp', ->
+      it 'should return the message', ->
         envelope =
           config:
             payloadType: 'date'
