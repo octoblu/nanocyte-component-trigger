@@ -27,8 +27,9 @@ describe 'Trigger', ->
             payloadType: 'date'
           message:
             topic: 'triggers-service'
-            params:
-              foo: 'bar'
+            payload:
+              params:
+                foo: 'bar'
 
         expect(@sut.onEnvelope envelope).to.deep.equal params: foo: 'bar'
 

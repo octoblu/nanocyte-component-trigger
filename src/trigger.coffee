@@ -4,7 +4,7 @@ class Trigger extends ReturnValue
   onEnvelope: (envelope) =>
     {config,message} = envelope
 
-    return params: message.params if message.topic == 'triggers-service'
+    return message.payload if message.topic == 'triggers-service'
     return message unless message.topic == 'button'
     return payload: "" if config?.payloadType == 'none'
     return payload: Date.now() if config?.payloadType == 'date'
