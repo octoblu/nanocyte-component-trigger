@@ -20,6 +20,18 @@ describe 'Trigger', ->
 
         expect(@sut.onEnvelope envelope).to.deep.equal payload: Date.now()
 
+    describe 'when it receives an envelope with triggers-service topic', ->
+      it 'should return the payload containting a timestamp', ->
+        envelope =
+          config:
+            payloadType: 'date'
+          message:
+            topic: 'triggers-service'
+            params:
+              foo: 'bar'
+
+        expect(@sut.onEnvelope envelope).to.deep.equal params: foo: 'bar'
+
     describe 'when it receives an envelope with payloadType string', ->
       it 'should return the payload containing the string', ->
         envelope =
